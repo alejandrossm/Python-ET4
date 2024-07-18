@@ -3,6 +3,8 @@ import openpyxl
 #importar pandas: pip install pandas
 import pandas as pd
 
+
+print("*******ET 4 GENERADOR***********")
 # Carga un archivo CSV con los datos
 resultados = pd.read_csv("carga.csv", sep=";", header = 0, index_col = False)
 resultados
@@ -25,7 +27,7 @@ columns = 'DFHJL'
 # Posibles valores de los indicadores
 valores = "abcde"
 # Cantidad de indicadores que tiene el instrumento
-n_indicadores = 8
+n_indicadores = int(input("Ingrese número de indicadores: "))
 # Nombre de la plantilla
 wb_name = "PlantillaET4.xlsx"
 # Nombre de la hoja
@@ -33,6 +35,7 @@ sheet_name = "ET4"
 
 for indice in range(resultados.shape[0]):
   row = 30 # Reinicia la fila
+  columns = 'DFHJL' # Reiniciar columnas
   # Selecciona la plantilla que se debe completar
   wb = openpyxl.load_workbook(wb_name)
   # Selecciona la hoja que se debe completar
@@ -47,11 +50,17 @@ for indice in range(resultados.shape[0]):
   for i in range(1, n_indicadores+1):
     indicadores[str(i)] = resultados['I' + str(i)][indice]
   # Iteramos los datos para ir marcando el indicador
+  fila=0
   for indicador, valor in indicadores.items():  
     col = columns[valores.index(str(valor).lower())] #corregido...version para PC
     name_col = col + str(row)
     sheet[name_col] = 'x'
     row += 2
+    fila+=1
+    # agregar condiciones para aumentar número de filas
+    if fila==10:
+      row=30
+      columns='QSUWY'
 
   # Guarda el archivo usando el nombre del estudiante
   nombre = resultados['nombre'.upper()][indice]

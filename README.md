@@ -1,4 +1,4 @@
 # GENERADOR ET4 Duoc UC
 
-#### author: Jazna Meza
-#### modificado: Alejandro Sepúlveda
+#### Author: Jazna Meza
+#### Colabs: Alejandro Sepúlveda
