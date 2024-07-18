@@ -6,7 +6,7 @@ import pandas as pd
 
 print("*******ET 4 GENERADOR***********")
 # Carga un archivo CSV con los datos
-resultados = pd.read_csv("carga.csv", sep=";", header = 0, index_col = False)
+resultados = pd.read_csv("carga.csv", sep=";", header = 0, index_col = False, encoding="latin-1") #corregido error de codificación de caracteres
 resultados
 
 # Setea las celdas en donde irán los datos en la planilla 
